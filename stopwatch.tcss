@@ -1,0 +1,20 @@
+#wrap {
+    align: center middle;
+    height: 100%;
+}
+
+#controls {
+    height: 3;
+    content-align: center middle;
+    align-vertical: middle;
+}
+
+Button {
+    width: 16;
+    margin: 0 1;
+}
+
+#display {
+    height: 5;
+    align: center middle;
+}
