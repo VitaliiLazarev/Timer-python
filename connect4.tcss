@@ -1,0 +1,33 @@
+#root {
+    align: center middle;
+    height: 100%;
+    padding: 1;
+}
+
+#controls {
+    height: 3;
+    align: center middle;
+    padding: 1;
+}
+
+#board {
+    grid-size: 7 6;       
+    grid-gutter: 1;       
+    align: center middle;
+}
+
+Button {
+    width: 8;
+}
+
+.cell {
+    width: 5;          
+    height: 3;
+    content-align: center middle;
+    border: heavy $secondary;
+    background: $surface;
+}
+
+.cell.x { color: red; }
+.cell.o { color: yellow; }
+.cell.empty { color: $text-muted; }
