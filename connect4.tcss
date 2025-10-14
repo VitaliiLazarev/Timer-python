@@ -8,6 +8,7 @@
     height: 3;
     align: center middle;
     padding: 1;
+    grid-gutter: 1;    
 }
 
 #board {
@@ -16,8 +17,17 @@
     align: center middle;
 }
 
+#controls_bottom {
+    grid-size: 7 1; 
+    grid-gutter: 1;   
+    align: center middle;
+    padding-top: 1;
+}
+
 Button {
-    width: 8;
+    width: 5;        
+    height: 3; 
+    content-align: center middle;
 }
 
 .cell {
@@ -31,3 +41,12 @@ Button {
 .cell.x { color: red; }
 .cell.o { color: yellow; }
 .cell.empty { color: $text-muted; }
+
+.cell.available {
+    border: heavy $success;
+    background: $boost;
+}
+
+.cell.available:hover {
+    background: $accent;
+}
