@@ -1,0 +1,75 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #001f3f;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+.board {
+  display: inline-block;
+  padding: 10px;
+  background: #0055aa;
+  border-radius: 12px;
+  border: 4px solid #ffffff;
+  margin-bottom: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  margin: 4px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.cell.empty {
+  background: #003366;
+}
+
+.cell.x {
+  background: #ff4136; /* red */
+}
+
+.cell.o {
+  background: #ffdc00; /* yellow */
+}
+
+.message {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+button {
+  margin: 4px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #0074d9;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.reset {
+  background: #2ecc40;
+}

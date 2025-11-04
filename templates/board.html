@@ -1,0 +1,40 @@
+<div class = "board">
+    {% for row in board|reverse %}
+    <div class = "row">
+        {% for cell in row %}
+        <div class="cell 
+                    {% if cell == 'X' %}x{% elif cell == 'O' %}o{% else %}empty{% endif %}">
+            {% if cell == " " %}
+                &nbsp;
+            {% else %}
+                {{ cell }}
+             {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<p class="message">{{ message }}</p>
+
+<div class="controls">
+    {% for c in range(cols) %}
+        <button
+            hx-post="{{ url_for('drop', col=c) }}"
+            hx-target="#game-area"
+            hx-swap="outerHTML"
+            {% if game_over %}disabled{% endif %}
+        >
+        Drop {{ c + 1 }}
+        </button>
+    {% endfor %}
+
+    <button
+        class="reset"
+        hx-post="{{ url_for('reset') }}"
+        hx-target="#game-area"
+        hx-swap="outerHTML"
+        >
+        Play again
+    </button>
+</div>
