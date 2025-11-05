@@ -1,40 +1,42 @@
-<div class = "board">
+<div id="game-area">
+  <div class="board">
     {% for row in board|reverse %}
-    <div class = "row">
+      <div class="row">
         {% for cell in row %}
-        <div class="cell 
-                    {% if cell == 'X' %}x{% elif cell == 'O' %}o{% else %}empty{% endif %}">
+          <div class="cell
+                      {% if cell == 'X' %}x{% elif cell == 'O' %}o{% else %}empty{% endif %}">
             {% if cell == " " %}
-                &nbsp;
+              &nbsp;
             {% else %}
-                {{ cell }}
-             {% endif %}
-        </div>
+              {{ cell }}
+            {% endif %}
+          </div>
         {% endfor %}
-    </div>
+      </div>
     {% endfor %}
-</div>
+  </div>
 
-<p class="message">{{ message }}</p>
+  <p class="message">{{ message }}</p>
 
-<div class="controls">
+  <div class="controls">
     {% for c in range(cols) %}
-        <button
-            hx-post="{{ url_for('drop', col=c) }}"
-            hx-target="#game-area"
-            hx-swap="outerHTML"
-            {% if game_over %}disabled{% endif %}
-        >
+      <button
+        hx-post="{{ url_for('drop', col=c) }}"
+        hx-target="#game-area"
+        hx-swap="outerHTML"
+        {% if game_over %}disabled{% endif %}
+      >
         Drop {{ c + 1 }}
-        </button>
+      </button>
     {% endfor %}
 
     <button
-        class="reset"
-        hx-post="{{ url_for('reset') }}"
-        hx-target="#game-area"
-        hx-swap="outerHTML"
-        >
-        Play again
+      class="reset"
+      hx-post="{{ url_for('reset') }}"
+      hx-target="#game-area"
+      hx-swap="outerHTML"
+    >
+      Play again
     </button>
+  </div>
 </div>

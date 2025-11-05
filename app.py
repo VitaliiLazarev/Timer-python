@@ -1,13 +1,5 @@
 from flask import Flask, render_template
-from connect4_logic import (
-    the_board,
-    reset_board,
-    drop_token,
-    check_win,
-    is_draw,
-    COLS,
-    ROWS,
-)
+import connect4_logic as game
 
 app = Flask(__name__)
 
@@ -19,18 +11,19 @@ last_message = "Player X's turn"
 def index():
     """ Init page load """
     global current_player, game_over, last_message
-    reset_board()
+    game.reset_board()
     current_player = "X"
     game_over = False
     last_message = "Player X's turn"
+    
     return render_template(
         "index.html",
-        board = the_board,
+        board = game.the_board,
         player = current_player,
         message = last_message,
         game_over = game_over,
-        cols = COLS,
-        rows = ROWS,
+        cols = game.COLS,
+        rows = game.ROWS,
     )
 
 @app.route("/drop/<int:col>", methods=["POST"])
@@ -39,13 +32,13 @@ def drop(col: int):
     global current_player, game_over, last_message
 
     if not game_over:
-        if drop_token(current_player, col):
+        if game.drop_token(current_player, col):
             # Check for win
-            if check_win(current_player):
+            if game.check_win(current_player):
                 game_over = True
                 last_message = f"Player {current_player} wins! Play again?"
             #Check for draw
-            elif is_draw():
+            elif game.is_draw():
                 game_over = True
                 last_message = "It's a draw! Play again?"
             else:
@@ -57,30 +50,31 @@ def drop(col: int):
 
     return render_template(
         "board.html",
-        board = the_board,
+        board = game.the_board,
         player = current_player,
         message = last_message,
         game_over = game_over,
-        cols = COLS,
-        rows = ROWS,
+        cols = game.COLS,
+        rows = game.ROWS,
     )
 
 @app.post("/reset")
 def reset():
     """ Reset the board and start a new game """
     global current_player, game_over, last_message
-    reset_board()
+    game.reset_board()
     current_player = "X"
     game_over = False
     last_message = "New game! Player X starts"
+    
     return render_template(
         "board.html",
-        board = the_board,
+        board = game.the_board,
         player = current_player,
         message = last_message,
         game_over = game_over,
-        cols = COLS,
-        rows = ROWS,
+        cols = game.COLS,
+        rows = game.ROWS,
     )
 
 if __name__ == "__main__":
